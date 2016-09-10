@@ -1,8 +1,8 @@
 ============================================
-Studywolf Control repo - walking branch
+Studywolf Control repo - walking branch [forked by NEIL for ICRA17]
 ============================================
 
-This is a repository to hold the code I've developed for
+This is a repository to hold the code Travis developed for
 a walking demonstration, showing a specific use of the DMP control code.
 
 Run run.py to see the demo.
