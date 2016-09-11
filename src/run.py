@@ -29,7 +29,8 @@ dt = 1e-3
 
 # instantiate the controller for the walk task
 # and get the sim_and_plot parameters 
-control_shell, runner_pars = walk.Task()
+task = 'Free'
+control_shell, runner_pars = walk.Task(task)
 arm = Arm3(dt=dt)
 
 runner = Runner(dt=dt, **runner_pars)
