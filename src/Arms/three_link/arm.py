@@ -32,10 +32,10 @@ class Arm3Link(Arm):
 		pyArm = py3LinkArm
 
 		# length of arm links
-		self.l1 = 2.0; self.l2 = 1.2; self.l3 = .7
+		self.l1 = 0.7; self.l2 = 0.6; self.l3 = .3
 		self.L = np.array([self.l1, self.l2, self.l3])
 		# mass of links
-		m1=10; m2=m1; m3=m1
+		m1=15; m2=m1; m3=m1
 		# z axis inertia moment of links
 		izz1=100; izz2=izz1; izz3=izz1
 		# create mass matrices at COM for each link

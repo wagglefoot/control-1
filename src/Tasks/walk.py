@@ -74,7 +74,7 @@ def Task(task):
 					'tau':1, # tau is the time scaling term
 					'trajectory':trajectory.T,} 
 
-	runner_pars = {'box':[-5,5,-5,5],
+	runner_pars = {'box':[-0.75,0.75,-1.6,0.1],
 				   'control_type':'dmp',
 				   'rotate':-np.pi/2.,
 				   'title':'Task: Walking'}

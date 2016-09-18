@@ -54,7 +54,7 @@ class Runner:
 		self.arm = arm
 		self.shell = control_shell
 		
-		fig = plt.figure(figsize=(5.1,5.1), dpi=None)
+		fig = plt.figure(figsize=(10,10), dpi=None)
 		fig.suptitle(self.title); 
 		# set the padding of the subplot explicitly
 		fig.subplotpars.left=.1; fig.subplotpars.right=.9
@@ -63,20 +63,20 @@ class Runner:
 		ax = fig.add_subplot(1, 1, 1, 
 							 xlim=(self.box[0], self.box[1]), 
 							 ylim=(self.box[2], self.box[3]))
-		ax.xaxis.grid(); ax.yaxis.grid()
+		# ax.xaxis.grid(); ax.yaxis.grid()
 		# make it a square plot
-		ax.set_aspect(1) 
+		ax.set_aspect('equal') 
 
 		# set up plot elements
-		self.trail, = ax.plot([], [], color='#888888', lw=3)
-		self.arm_line, = ax.plot([], [], 'o-', mew=4, color='b', lw=5)
+		self.trail, = ax.plot([], [], color='#888888', lw=8)
+		self.arm_line, = ax.plot([], [], 'o-', mew=8, color='r', lw=6)
 		self.target_line, = ax.plot([], [], 'r-x', mew=4)
 		self.info = ax.text(self.box[0]+abs(.1*self.box[0]), \
 							self.box[3]-abs(.1*self.box[3]), \
 							'', va='top')
 		self.trail_data = np.ones((self.target_steps, 2), \
-								   dtype='float') * np.NAN
-	
+								   dtype='float') * np.NAN	
+
 		if self.trajectory is not None:
 			ax.plot(self.trajectory[:,0], self.trajectory[:,1], alpha=.3)
 
@@ -111,10 +111,10 @@ class Runner:
 			anim.save(video, fps=1.0/(self.dt*self.display_steps), dpi=200)
 		
 		self.anim = anim
-		
+
 	def make_info_text(self):
 		text = []
-		text.append('t = %1.4g'%(self.sim_step*self.dt))
+		text.append('t = %1.4g'%(self.sim_step*self.dt)) #
 		u_text = ' '.join('%4.3f,'%F for F in self.shell.u)
 		text.append('u = ['+u_text+']')
 
@@ -129,7 +129,7 @@ class Runner:
 		self.arm_line.set_data([], [])
 		self.target_line.set_data([], [])
 		self.trail.set_data([], [])
-		return self.arm_line, self.target_line, self.info, self.trail
+		return self.arm_line, self.target_line, self.trail
 
 	def anim_animate(self, i):
 
@@ -153,7 +153,7 @@ class Runner:
 		
 		# update figure
 		self.arm_line.set_data(*self.arm.position(rotate=self.rotate))
-		self.info.set_text(self.make_info_text())
+		# self.info.set_text(self.make_info_text())
 		self.trail.set_data(self.trail_data[:,0], self.trail_data[:,1])
 		if self.target is not None:
 			if isinstance(self.shell.controller, GC.Control):
